@@ -6,6 +6,8 @@ const dotenv= require('dotenv')
 dotenv.config();
 app.use(express.json())
 
+const connectDB= require('./model/db')
+connectDB();
 const port= process.env.PORT ||3000;
 app.get("/", ( req , res)=>{
     res.send("hello brothr");
