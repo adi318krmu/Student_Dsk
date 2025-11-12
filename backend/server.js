@@ -6,14 +6,19 @@ const dotenv= require('dotenv')
 dotenv.config();
 app.use(express.json())
 
-const userRouter= require('./router/userRoutes')
+
 const connectDB= require('./model/db')
 connectDB();
 const port= process.env.PORT ||3000;
 
 // to call auth router
+const userRouter= require('./router/userRoutes')
+app.use('/api/auth', userRouter);
+ 
+// to call notes router
+const notesRouter= require('./router/notesRouter')
+app.use('/api/notes', notesRouter)
 
-app.use('/api', userRouter);
 app.get("/", ( req , res)=>{
     res.send("hello brothr");
 })
